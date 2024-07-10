@@ -11,7 +11,7 @@ const App = () => {
 
   const fetchTodos = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/todos');
+      const res = await axios.get('https://todo-j6kl.onrender.com/todos');
       setTodos(res.data);
     } catch (err) {
       console.error('Error fetching todos:', err);
@@ -20,7 +20,7 @@ const App = () => {
 
   const addTodo = async () => {
     try {
-      const res = await axios.post('http://localhost:5000/todos', { task });
+      const res = await axios.post('https://todo-j6kl.onrender.com/todos', { task });
       setTodos([...todos, res.data]);
       setTask('');  // Clear input after adding
     } catch (err) {
@@ -30,7 +30,7 @@ const App = () => {
 
   const updateTodo = async (id, updatedTask) => {
     try {
-      const res = await axios.put(`http://localhost:5000/todos/${id}`, updatedTask);
+      const res = await axios.put(`https://todo-j6kl.onrender.com/todos/${id}`, updatedTask);
       setTodos(todos.map(todo => (todo._id === id ? res.data : todo)));
     } catch (err) {
       console.error('Error updating todo:', err);
@@ -39,7 +39,7 @@ const App = () => {
 
   const deleteTodo = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/todos/${id}`);
+      await axios.delete(`https://todo-j6kl.onrender.com/todos/${id}`);
       setTodos(todos.filter(todo => todo._id !== id));
     } catch (err) {
       console.error('Error deleting todo:', err);
