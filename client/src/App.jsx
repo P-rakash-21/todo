@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import './App.css';
 
 const App = () => {
   const [todos, setTodos] = useState([]);
@@ -22,7 +23,7 @@ const App = () => {
     try {
       const res = await axios.post('https://todo-j6kl.onrender.com/todos', { task });
       setTodos([...todos, res.data]);
-      setTask('');  // Clear input after adding
+      setTask('');
     } catch (err) {
       console.error('Error adding todo:', err);
     }
@@ -47,19 +48,20 @@ const App = () => {
   };
 
   return (
-    <div>
+    <div className="container">
       <h1>Todo List</h1>
-      <div>
+      <div className="input-container">
         <input
           type="text"
           value={task}
           onChange={(e) => setTask(e.target.value)}
+          placeholder="Add a new task"
         />
         <button onClick={addTodo}>Add Task</button>
       </div>
-      <ul>
+      <ul className="todo-list">
         {todos.map(todo => (
-          <li key={todo._id}>
+          <li key={todo._id} className="todo-item">
             <input
               type="text"
               value={todo.task}
